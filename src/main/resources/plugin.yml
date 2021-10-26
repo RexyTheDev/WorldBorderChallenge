@@ -1,0 +1,9 @@
+name: WorldBorder
+version: '${project.version}'
+main: com.rexythedev.worldborder.Main
+api-version: 1.17
+authors: [ Rexy ]
+commands:
+  Center:
+  Start:
+  Reset:
