@@ -18,28 +18,18 @@ public class StartCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player p = (Player) sender;
-        if (plugin.getConfig().get("World-Center.X") == null) {
+        if (plugin.getConfig().get("World-Center.X") == null && args.length == 1 && isInt(args[0])) {
+            p.sendMessage(Utils.chat("&7(&c&l!&7) &ePlease enter a border size, example &a/Start 100&e!"));
             plugin.getConfig().set("World-Center.X", p.getLocation().getBlockX());
             plugin.getConfig().set("World-Center.Y", p.getLocation().getBlockY());
             plugin.getConfig().set("World-Center.Z", p.getLocation().getBlockZ());
             plugin.saveConfig();
-            p.sendMessage(Utils.chat("&7(&c&l!&7) &ePlease enter a border size, example &a/Start 100&e!"));
             p.sendMessage(Utils.chat("&7(&a&l!&7) &eWorld center set, setting border!"));
             p.sendTitle(Utils.chat("&aWorld center set!"), Utils.chat("&eShrinking Border"), 1, 100, 1);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder center " + plugin.getConfig().get("World-Center.X") + " " + plugin.getConfig().get("World-Center.Z"));
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder set " + args[0]);
         }else{
-            if (args.length == 0){
                 p.sendMessage(Utils.chat("&7(&c&l!&7) &ePlease enter a border size, example &a/Start 100&e!"));
-            }else if (args.length == 1 && isInt(args[0])){
-                plugin.reloadConfig();
-                p.sendMessage(Utils.chat("&7(&a&l!&7) &eWorld center set, setting border!"));
-                p.sendTitle(Utils.chat("&aWorld center set!"), Utils.chat("&eShrinking Border"), 1, 100, 1);
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder center " + plugin.getConfig().get("World-Center.X") + " " + plugin.getConfig().get("World-Center.Z"));
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder set " + args[0]);
-            }else{
-                p.sendMessage(Utils.chat("&7(&c&l!&7) &ePlease only enter numbers!"));
-            }
         }
         return false;
     }

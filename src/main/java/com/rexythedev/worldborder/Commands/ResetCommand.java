@@ -18,8 +18,8 @@ public class ResetCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player p = (Player) sender;
-        p.sendMessage(Utils.chat("&7(&a&l!&7) &eWorld center set!"));
-        p.sendTitle(Utils.chat("&aWorld center set!"), Utils.chat("&eShrinking Border"), 1, 100, 1);
+        p.sendMessage(Utils.chat("&7(&a&l!&7) &eReseting border size!"));
+        p.sendTitle(Utils.chat("&eReseting border size!"), Utils.chat("&eExpanding border."), 1, 100, 1);
         plugin.getConfigFile().delete();
         plugin.reloadConfig();
         plugin.saveDefaultConfig();
